@@ -5,26 +5,26 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class KafkaTopic {
-    @Value("${spring.kafka.topics.student}")
-    private String STUDENT_TOPIC;
+    @Value("${spring.kafka.topics.contact}")
+    private String CONTACT_TOPIC;
 
     
-    @Value("${spring.kafka.topics.classroom}")
-    private String CLASSROOM_TOPIC;
+    @Value("${spring.kafka.topics.department}")
+    private String DEPARTMENT_TOPIC;
 
     public String getTopic(TopicEnum topicEnum) {
         switch (topicEnum) {
-            case STUDENT:
-                return STUDENT_TOPIC;
-            case CLASSROOM:
-                return CLASSROOM_TOPIC;
+            case CONTACT:
+                return CONTACT_TOPIC;
+            case DEPARTMENT:
+                return DEPARTMENT_TOPIC;
             default:
                 return null;
         }
     }
 
     public enum TopicEnum {
-        STUDENT,
-        CLASSROOM,
+        CONTACT,
+        DEPARTMENT,
     }
 }

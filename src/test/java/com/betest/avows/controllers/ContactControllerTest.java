@@ -16,18 +16,19 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.betest.avows.dtos.StudentDto;
+import com.betest.avows.dtos.ContactDto;
 import com.betest.avows.models.Department;
 import com.betest.avows.models.Contact;
-import com.betest.avows.services.StudentService;
+import com.betest.avows.services.ContactService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.uuid.Generators;
 
-@WebMvcTest(controllers = StudentController.class)
+@WebMvcTest(controllers = ContactController.class)
 @AutoConfigureMockMvc(addFilters = false)
-public class StudentControllerTest {
+public class ContactControllerTest {
 
     @MockBean
-    private StudentService mockStudentService;
+    private ContactService mockContactService;
 
     @Autowired
     private MockMvc mockRequest;
@@ -35,24 +36,24 @@ public class StudentControllerTest {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
-    @DisplayName("test: get student by their id")
-    void testGetStudentById() throws Exception {
+    @DisplayName("test: get contact by their id")
+    void testGetContactById() throws Exception {
         // input
-        UUID inputId = UUID.randomUUID();
+        UUID inputId = Generators.timeBasedEpochGenerator().generate();
 
         // stub result
-        Contact student = new Contact(inputId, "00123", "name");
-        Department classroom = new Department(UUID.randomUUID(), "classname");
-        student.setDepartment(classroom);
-        classroom.setContacts(List.of(student));
-        doReturn(student)
-                .when(mockStudentService)
+        Contact contact = new Contact(inputId, "00123", "name");
+        Department department = new Department(Generators.timeBasedEpochGenerator().generate(), "department");
+        contact.setDepartment(department);
+        department.setContacts(List.of(contact));
+        doReturn(contact)
+                .when(mockContactService)
                 .getById(inputId);
 
         // test
-        StudentDto resultDto = StudentDto.toDto(student);
+        ContactDto resultDto = ContactDto.toDto(contact);
 
-        URI uri = new URI("/student/id/" + inputId);
+        URI uri = new URI("/contact/id/" + inputId);
         mockRequest
                 .perform(MockMvcRequestBuilders.get(uri))
                 .andExpect(MockMvcResultMatchers.status().isOk())

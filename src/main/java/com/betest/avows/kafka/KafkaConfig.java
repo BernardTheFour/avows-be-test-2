@@ -19,7 +19,7 @@ import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-import com.betest.avows.dtos.StudentDto;
+import com.betest.avows.dtos.ContactDto;
 
 @Configuration
 public class KafkaConfig {
@@ -51,15 +51,15 @@ public class KafkaConfig {
 
     // consumer configs
     @Bean
-    public ConsumerFactory<String, StudentDto> studentConsumer() {
+    public ConsumerFactory<String, ContactDto> contactConsumer() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
-                new JsonDeserializer<>(StudentDto.class));
+                new JsonDeserializer<>(ContactDto.class));
     }
 
     @Bean()
-    public ConcurrentKafkaListenerContainerFactory<String, StudentDto> studentListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, StudentDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(studentConsumer());
+    public ConcurrentKafkaListenerContainerFactory<String, ContactDto> contactListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, ContactDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(contactConsumer());
         return factory;
     }
 
