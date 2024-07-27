@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "7c56e51d-ef7e-4232-a872-672223340ddb",
+		"name": "avows-betest-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "36969651"
+	},
+	"item": [
+		{
+			"name": "student",
+			"item": [
+				{
+					"name": "get-all-students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/student"
+					},
+					"response": []
+				},
+				{
+					"name": "get-student-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/student/id/4ee2ccde-b8ff-4f15-a4b8-ff9568abf9f2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "kafka",
+			"item": [
+				{
+					"name": "kafka-produce-trigger",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"nisn\": \"001212\",\r\n  \"name\": \"Bernard\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/kafka/student"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "classroom",
+			"item": [
+				{
+					"name": "get-all-classrooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/classroom"
+					},
+					"response": []
+				},
+				{
+					"name": "get-classroom-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{URL}}/classroom/id/32099748-41e7-4112-98e0-59d9eb26a3dd"
+					},
+					"response": []
+				},
+				{
+					"name": "add-new-classroom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"12C\" \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/classroom"
+					},
+					"response": []
+				},
+				{
+					"name": "classroom-enrollment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"student_ids\": [\r\n    \"4ee2ccde-b8ff-4f15-a4b8-ff9568abf9f2\",\r\n    \"87f5b310-e869-464a-8003-00bcf3125f68\",\r\n    \"9223626d-9159-4bcd-a1cd-f1962669fb34\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{URL}}/classroom/id/32099748-41e7-4112-98e0-59d9eb26a3dd/enroll"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}

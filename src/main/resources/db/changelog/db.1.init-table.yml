@@ -1,0 +1,87 @@
+databaseChangeLog:
+- changeSet:
+    id: 1722049516930-1
+    author: root (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: contactPK
+            name: id
+            type: UUID
+        - column:
+            name: name
+            type: VARCHAR(255)
+        - column:
+            name: phone_number
+            type: VARCHAR(255)
+        - column:
+            name: department_id
+            type: UUID
+        tableName: contact
+- changeSet:
+    id: 1722049516930-2
+    author: root (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: departmentsPK
+            name: id
+            type: UUID
+        - column:
+            name: name
+            type: VARCHAR(255)
+        tableName: departments
+- changeSet:
+    id: 1722049516930-3
+    author: root (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: id
+        constraintName: UC_CONTACTID_COL
+        tableName: contact
+- changeSet:
+    id: 1722049516930-4
+    author: root (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: phone_number
+        constraintName: UC_CONTACTPHONE_NUMBER_COL
+        tableName: contact
+- changeSet:
+    id: 1722049516930-5
+    author: root (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: id
+        constraintName: UC_DEPARTMENTSID_COL
+        tableName: departments
+- changeSet:
+    id: 1722049516930-6
+    author: root (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: UC_DEPARTMENTSNAME_COL
+        tableName: departments
+- changeSet:
+    id: 1722049516930-7
+    author: root (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: department_id
+        baseTableName: contact
+        constraintName: FK36lhsxevq4ayaorjgstqjgf3h
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: departments
+        validate: true
+

@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1720905117-1
+      author: root
+      changes:
+        - sql:
+            sql: insert into students (id, nisn, name) values ( '4ee2ccde-b8ff-4f15-a4b8-ff9568abf9f2', '542119', 'Ava Wallace')
+        - sql:
+            sql: insert into students (id, nisn, name) values ( '87f5b310-e869-464a-8003-00bcf3125f68', '819273', 'Liam Brooks')
+        - sql:
+            sql: insert into students (id, nisn, name) values ( '9223626d-9159-4bcd-a1cd-f1962669fb34', '935421', ' Olivia Lee')
+        - sql:
+            sql: insert into students (id, nisn, name) values ( '25eec426-fd3c-498d-a142-c6095507c8b7', '187654', 'Noah Hall')
+        - sql:
+            sql: insert into students (id, nisn, name) values ( '8bd96716-6740-4952-b13b-517a94e5b13d', '753192', 'Ethan Martin')
+  - changeSet:
+      id: 1720905117-2
+      author: root
+      changes:
+        - sql:
+            sql: insert into classrooms (id, name) values ( '32099748-41e7-4112-98e0-59d9eb26a3dd', '10A')
+        - sql:
+            sql: insert into classrooms (id, name) values ( '60b6976f-5aee-466e-9f30-e3d98e4413b5', '10B')
+        - sql:
+            sql: insert into classrooms (id, name) values ( 'a3514090-0720-42dd-81ec-74bab4ec8a96', '11A')
+        - sql:
+            sql: insert into classrooms (id, name) values ( '94958d1b-8c1a-4c69-8333-3d61054bf61b', '11B')
+        - sql:
+            sql: insert into classrooms (id, name) values ( 'e2230fbe-ff4e-4680-b3c3-75d3fc105508', '12A')
