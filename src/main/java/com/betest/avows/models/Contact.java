@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Pattern;
 
 @Entity
-@Table(name = "contact")
+@Table(name = "contacts")
 public class Contact {
 
     @Id
