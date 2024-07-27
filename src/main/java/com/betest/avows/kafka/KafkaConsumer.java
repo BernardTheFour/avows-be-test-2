@@ -20,7 +20,7 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "${spring.kafka.topics.contact}", groupId = "${spring.kafka.consumer.group-id}", containerFactory = "contactListenerContainerFactory")
     public void consumeContact(ContactDto contactDto) {
-        logger.info("KAFKA CONSUME - (student) " + contactDto);
+        logger.info("KAFKA CONSUME - (" + KafkaTopic.TopicEnum.CONTACT.name() + ") " + contactDto);
         contactService.saveContact(contactDto);
     }
 }
