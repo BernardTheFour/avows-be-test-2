@@ -10,6 +10,18 @@ This project is for Avows Technical Test
 - Mockito: mock class and object to fully isolate the testing environment
 - Docker Compose: easy to run and setup working environment for developer
 
+## API
+
+### Postman API Docs
+
+Postman API documentation can be downloaded [here](/avows-betest-api.postman_collection.json)
+
+### Swagger API Documentation
+
+This application is running on port 8080.
+
+To access the API documentation, hit http://localhost:8080/swagger-ui/index.html
+
 ## Prerequisites
 
 - Windows 10 or later
@@ -72,18 +84,9 @@ This project is for Avows Technical Test
     sh run.sh
     ```
 
-### Swagger API Documentation
-
-This application is running on port 8080.
-
-To access the API documentation, hit http://localhost:8080/swagger-ui/index.html
-
 ### PostgreSQL pgAdmin UI
 
 After running docker compose, pgAdmin UI could be accessed from browser.
 
 To access the UI, hit http://localhost:1010/browser/
 
-### Postman API Docs
-
-Postman API documentation can be downloaded [here](/avows-betest-api.postman_collection.json)
