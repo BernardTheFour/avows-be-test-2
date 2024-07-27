@@ -19,86 +19,87 @@ import org.springframework.dao.DuplicateKeyException;
 import com.betest.avows.dtos.ContactDto;
 import com.betest.avows.models.Contact;
 import com.betest.avows.repositories.ContactRepository;
+import com.fasterxml.uuid.Generators;
 
 @SpringBootTest()
 @ExtendWith(MockitoExtension.class)
-public class StudentServiceTest {
+public class ContactServiceTest {
 
     @Mock
-    private ContactRepository mockStudentRepository;
+    private ContactRepository mockContactRepository;
 
-    private ContactService studentService;
+    private ContactService contactService;
 
     @BeforeEach
     public void setup() {
-        studentService = new ContactService(mockStudentRepository);
+        contactService = new ContactService(mockContactRepository);
     }
 
     @Test
-    @DisplayName("test: save new student success")
-    void testSaveNewStudentSuccessWhenValid() {
+    @DisplayName("test: save new contact success")
+    void testSaveNewContactSuccessWhenValid() {
         // stub entity
         Contact mockEntity = new Contact(
-                UUID.randomUUID(),
+                Generators.timeBasedEpochGenerator().generate(),
                 "001122",
                 "Name");
         doReturn(mockEntity)
-                .when(mockStudentRepository)
+                .when(mockContactRepository)
                 .save(any(Contact.class));
 
         // input
-        ContactDto studentDto = ContactDto.toDtoDetached(mockEntity);
+        ContactDto contactDto = ContactDto.toDtoDetached(mockEntity);
 
         // test
         Contact expectedValue = mockEntity;
-        Contact actualValue = studentService.saveContact(studentDto);
+        Contact actualValue = contactService.saveContact(contactDto);
 
         assertAll(() -> {
-            assertEquals(studentDto.name(), mockEntity.getName());
-            assertEquals(studentDto.phone_number(), mockEntity.getPhoneNumber());
+            assertEquals(contactDto.name(), mockEntity.getName());
+            assertEquals(contactDto.phone_number(), mockEntity.getPhoneNumber());
         });
         assertEquals(expectedValue, actualValue);
-        verify(mockStudentRepository, atMostOnce()).save(any(Contact.class));
+        verify(mockContactRepository, atMostOnce()).save(any(Contact.class));
     }
 
     @Test
-    @DisplayName("test: save new student failed when exception thrown")
-    void testSaveNewStudenFailedWhenExceptionThrown() {
+    @DisplayName("test: save new contact failed when exception thrown")
+    void testSaveNewContactFailedWhenExceptionThrown() {
         // stub entity
         Contact mockEntity = new Contact(
-                UUID.randomUUID(),
+                Generators.timeBasedEpochGenerator().generate(),
                 "001122",
                 "Name");
         doThrow(DuplicateKeyException.class)
-                .when(mockStudentRepository)
+                .when(mockContactRepository)
                 .save(any(Contact.class));
 
         // input
-        ContactDto studentDto = ContactDto.toDtoDetached(mockEntity);
+        ContactDto contactDto = ContactDto.toDtoDetached(mockEntity);
 
         // test
         assertThrows(DuplicateKeyException.class,
-                () -> studentService.saveContact(studentDto));
+                () -> contactService.saveContact(contactDto));
     }
 
     @Test
-    @DisplayName("test: get student by id success when valid")
-    void testGetStudentByIdSuccessWhenValid() {
-        UUID studentId = UUID.randomUUID();
+    @DisplayName("test: get contact by id success when valid")
+    void testGetContactByIdSuccessWhenValid() {
+        UUID contactId = Generators.timeBasedEpochGenerator().generate();
         // stub entity
         Contact mockEntity = new Contact(
-                studentId,
+                contactId,
                 "001122",
                 "Name");
         doReturn(Optional.of(mockEntity))
-                .when(mockStudentRepository)
-                .findById(studentId);
+                .when(mockContactRepository)
+                .findById(contactId);
 
         // test
         Contact expectedResult = mockEntity;
-        Contact actualResutl = studentService.getById(studentId);
+        Contact actualResutl = contactService.getById(contactId);
 
         assertEquals(expectedResult, actualResutl);
-        verify(mockStudentRepository, atMostOnce()).findById(studentId);
+        verify(mockContactRepository, atMostOnce()).findById(contactId);
     }
 }
