@@ -18,14 +18,14 @@ import org.springframework.dao.DuplicateKeyException;
 
 import com.betest.avows.dtos.StudentDto;
 import com.betest.avows.models.Contact;
-import com.betest.avows.repositories.StudentRepository;
+import com.betest.avows.repositories.ContactRepository;
 
 @SpringBootTest()
 @ExtendWith(MockitoExtension.class)
 public class StudentServiceTest {
 
     @Mock
-    private StudentRepository mockStudentRepository;
+    private ContactRepository mockStudentRepository;
 
     private StudentService studentService;
 

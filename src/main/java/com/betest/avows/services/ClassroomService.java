@@ -15,19 +15,19 @@ import com.betest.avows.kafka.KafkaProducer;
 import com.betest.avows.kafka.KafkaTopic.TopicEnum;
 import com.betest.avows.models.Department;
 import com.betest.avows.models.Contact;
-import com.betest.avows.repositories.ClassroomRepository;
+import com.betest.avows.repositories.DepartmentRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ClassroomService {
-    private final ClassroomRepository classroomRepository;
+    private final DepartmentRepository classroomRepository;
     private final StudentService studentService;
 
     private final KafkaProducer kafkaProducer;
 
     public ClassroomService(
-            ClassroomRepository classroomRepository,
+            DepartmentRepository classroomRepository,
             StudentService studentService,
             KafkaProducer kafkaProducer) {
         this.classroomRepository = classroomRepository;

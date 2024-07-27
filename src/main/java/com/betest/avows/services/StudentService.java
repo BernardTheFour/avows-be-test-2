@@ -7,16 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.betest.avows.dtos.StudentDto;
 import com.betest.avows.models.Contact;
-import com.betest.avows.repositories.StudentRepository;
+import com.betest.avows.repositories.ContactRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class StudentService {
 
-    private final StudentRepository studentRepository;
+    private final ContactRepository studentRepository;
 
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(ContactRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
