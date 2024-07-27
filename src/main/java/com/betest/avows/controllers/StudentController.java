@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.betest.avows.dtos.StudentDto;
+import com.betest.avows.dtos.ContactDto;
 import com.betest.avows.models.Contact;
 import com.betest.avows.services.StudentService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,18 +24,18 @@ public class StudentController {
     }
 
     @GetMapping("/id/{uuid}")
-    public ResponseEntity<StudentDto> getStudentById(@PathVariable(name = "uuid") UUID uuid) {
+    public ResponseEntity<ContactDto> getStudentById(@PathVariable(name = "uuid") UUID uuid) {
         Contact studentEntity = studentService.getById(uuid);
-        StudentDto studentDto = StudentDto.toDto(studentEntity);
+        ContactDto studentDto = ContactDto.toDto(studentEntity);
 
         return ResponseEntity.ok(studentDto);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<StudentDto>> getAllStudent() {
+    public ResponseEntity<List<ContactDto>> getAllStudent() {
         List<Contact> studentEntities = studentService.getAll();
-        List<StudentDto> studentDtos = studentEntities.stream()
-                .map(StudentDto::toDto)
+        List<ContactDto> studentDtos = studentEntities.stream()
+                .map(ContactDto::toDto)
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(studentDtos);

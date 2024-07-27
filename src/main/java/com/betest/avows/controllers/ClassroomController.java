@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.betest.avows.dtos.ClassroomDto;
-import com.betest.avows.dtos.ClassroomEnrollmentDto;
+import com.betest.avows.dtos.DepartmentDto;
+import com.betest.avows.dtos.DepartmentAssigningDto;
 import com.betest.avows.models.Department;
 import com.betest.avows.services.ClassroomService;
 
@@ -30,26 +30,26 @@ public class ClassroomController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ClassroomDto> saveNewClassroom(@RequestBody ClassroomDto dto) {
+    public ResponseEntity<DepartmentDto> saveNewClassroom(@RequestBody DepartmentDto dto) {
         Department classroomEntity = classroomService.saveClassroom(dto);
-        ClassroomDto classroomDto = ClassroomDto.toDto(classroomEntity);
+        DepartmentDto classroomDto = DepartmentDto.toDto(classroomEntity);
 
         return ResponseEntity.ok(classroomDto);
     }
 
     @GetMapping("/id/{uuid}")
-    public ResponseEntity<ClassroomDto> getClassroomById(@PathVariable(name = "uuid") UUID uuid) {
+    public ResponseEntity<DepartmentDto> getClassroomById(@PathVariable(name = "uuid") UUID uuid) {
         Department classroomEntity = classroomService.getClassroomById(uuid);
-        ClassroomDto classroomDto = ClassroomDto.toDto(classroomEntity);
+        DepartmentDto classroomDto = DepartmentDto.toDto(classroomEntity);
 
         return ResponseEntity.ok(classroomDto);
     }
 
     @GetMapping("")
-    public ResponseEntity<List<ClassroomDto>> getAllClassroom() {
+    public ResponseEntity<List<DepartmentDto>> getAllClassroom() {
         List<Department> classroomEntities = classroomService.getAll();
-        List<ClassroomDto> classroomDtos = classroomEntities.stream()
-                .map(ClassroomDto::toDto)
+        List<DepartmentDto> classroomDtos = classroomEntities.stream()
+                .map(DepartmentDto::toDto)
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(classroomDtos);
@@ -58,7 +58,7 @@ public class ClassroomController {
     @PutMapping("/id/{uuid}/enroll")
     public ResponseEntity<String> classroomEnrollment(
             @PathVariable(name = "uuid") UUID uuid,
-            @RequestBody ClassroomEnrollmentDto enrollmentDto) {
+            @RequestBody DepartmentAssigningDto enrollmentDto) {
         classroomService.classroomEnrollment(uuid, enrollmentDto);
 
         return ResponseEntity.ok("Class enrollment success");

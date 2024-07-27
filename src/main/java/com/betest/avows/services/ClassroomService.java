@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.betest.avows.dtos.ClassroomDto;
-import com.betest.avows.dtos.ClassroomEnrollmentDto;
+import com.betest.avows.dtos.DepartmentDto;
+import com.betest.avows.dtos.DepartmentAssigningDto;
 import com.betest.avows.kafka.KafkaProducer;
 import com.betest.avows.kafka.KafkaTopic.TopicEnum;
 import com.betest.avows.models.Department;
@@ -35,7 +35,7 @@ public class ClassroomService {
         this.kafkaProducer = kafkaProducer;
     }
 
-    public Department saveClassroom(ClassroomDto classroomDto) {
+    public Department saveClassroom(DepartmentDto classroomDto) {
         Department entity = new Department(classroomDto.name());
         Department savedEntity = classroomRepository.save(entity);
 
@@ -56,11 +56,11 @@ public class ClassroomService {
         return entities;
     }
 
-    public void classroomEnrollment(UUID classroomId, ClassroomEnrollmentDto enrollmentDto) {
+    public void classroomEnrollment(UUID classroomId, DepartmentAssigningDto enrollmentDto) {
         Department classroom = getClassroomById(classroomId);
         List<Contact> prevList = classroom.getContacts();
 
-        List<Contact> nextList = enrollmentDto.student_ids().stream()
+        List<Contact> nextList = enrollmentDto.contact_ids().stream()
                 .map((id) -> studentService.getById(id))
                 .collect(Collectors.toList());
 

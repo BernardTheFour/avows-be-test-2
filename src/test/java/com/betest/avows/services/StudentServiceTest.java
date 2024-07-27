@@ -16,7 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DuplicateKeyException;
 
-import com.betest.avows.dtos.StudentDto;
+import com.betest.avows.dtos.ContactDto;
 import com.betest.avows.models.Contact;
 import com.betest.avows.repositories.ContactRepository;
 
@@ -47,7 +47,7 @@ public class StudentServiceTest {
                 .save(any(Contact.class));
 
         // input
-        StudentDto studentDto = StudentDto.toDtoDetached(mockEntity);
+        ContactDto studentDto = ContactDto.toDtoDetached(mockEntity);
 
         // test
         Contact expectedValue = mockEntity;
@@ -55,7 +55,7 @@ public class StudentServiceTest {
 
         assertAll(() -> {
             assertEquals(studentDto.name(), mockEntity.getName());
-            assertEquals(studentDto.nisn(), mockEntity.getPhoneNumber());
+            assertEquals(studentDto.phone_number(), mockEntity.getPhoneNumber());
         });
         assertEquals(expectedValue, actualValue);
         verify(mockStudentRepository, atMostOnce()).save(any(Contact.class));
@@ -74,7 +74,7 @@ public class StudentServiceTest {
                 .save(any(Contact.class));
 
         // input
-        StudentDto studentDto = StudentDto.toDtoDetached(mockEntity);
+        ContactDto studentDto = ContactDto.toDtoDetached(mockEntity);
 
         // test
         assertThrows(DuplicateKeyException.class,

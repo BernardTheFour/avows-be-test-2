@@ -10,32 +10,32 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(value = Include.NON_NULL)
-public record ClassroomDto(
+public record DepartmentDto(
         UUID id,
         String name,
-        List<StudentDto> students) {
+        List<ContactDto> contacts) {
 
-    public static ClassroomDto toDtoDetached(Department entity) {
+    public static DepartmentDto toDtoDetached(Department entity) {
         if (Objects.isNull(entity)){
             return null;
         }
 
-        return new ClassroomDto(
+        return new DepartmentDto(
                 entity.getId(),
                 entity.getName(),
                 null);
     }
 
-    public static ClassroomDto toDto(Department entity) {
-        List<StudentDto> studentDtos = entity.getContacts()
+    public static DepartmentDto toDto(Department entity) {
+        List<ContactDto> contactDtos = entity.getContacts()
                 .stream()
                 // when chaining dto, avoid circular json printing
-                .map(StudentDto::toDtoDetached)
+                .map(ContactDto::toDtoDetached)
                 .collect(Collectors.toList());
 
-        return new ClassroomDto(
+        return new DepartmentDto(
                 entity.getId(),
                 entity.getName(),
-                studentDtos);
+                contactDtos);
     }
 }
