@@ -7,23 +7,23 @@
 	},
 	"item": [
 		{
-			"name": "student",
+			"name": "contact",
 			"item": [
 				{
-					"name": "get-all-students",
+					"name": "get-all-contacts",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{URL}}/student"
+						"url": "{{URL}}/contact"
 					},
 					"response": []
 				},
 				{
-					"name": "get-student-by-id",
+					"name": "get-contact-by-id",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{URL}}/student/id/4ee2ccde-b8ff-4f15-a4b8-ff9568abf9f2"
+						"url": "{{URL}}/contact/id/0190f22e-a74a-7ab8-a94e-af280f273208"
 					},
 					"response": []
 				}
@@ -53,14 +53,14 @@
 			]
 		},
 		{
-			"name": "classroom",
+			"name": "department",
 			"item": [
 				{
-					"name": "get-all-classrooms",
+					"name": "get-all-departments",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{URL}}/classroom"
+						"url": "{{URL}}/department"
 					},
 					"response": []
 				},
@@ -69,43 +69,43 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{URL}}/classroom/id/32099748-41e7-4112-98e0-59d9eb26a3dd"
+						"url": "{{URL}}/department/id/0190f22e-a74a-7d94-9ff0-f53279f6da06"
 					},
 					"response": []
 				},
 				{
-					"name": "add-new-classroom",
+					"name": "add-new-department",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"12C\" \r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"panjang\" \r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{URL}}/classroom"
+						"url": "{{URL}}/department"
 					},
 					"response": []
 				},
 				{
-					"name": "classroom-enrollment",
+					"name": "department-assigning",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"student_ids\": [\r\n    \"4ee2ccde-b8ff-4f15-a4b8-ff9568abf9f2\",\r\n    \"87f5b310-e869-464a-8003-00bcf3125f68\",\r\n    \"9223626d-9159-4bcd-a1cd-f1962669fb34\"\r\n  ]\r\n}",
+							"raw": "{\r\n  \"contact_ids\": [\r\n    \"0190f22e-a74a-7ab8-a94e-af280f273208\",\r\n    \"0190f22e-a74a-74cb-9f7e-0a8a83bfce20\"\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{URL}}/classroom/id/32099748-41e7-4112-98e0-59d9eb26a3dd/enroll"
+						"url": "{{URL}}/department/id/0190f269-da8f-748a-9ee4-1774f2e2bcec/assign"
 					},
 					"response": []
 				}

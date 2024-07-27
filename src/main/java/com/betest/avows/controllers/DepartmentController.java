@@ -55,7 +55,7 @@ public class DepartmentController {
         return ResponseEntity.ok(departmentDtos);
     }
 
-    @PutMapping("/id/{uuid}/enroll")
+    @PutMapping("/id/{uuid}/assign")
     public ResponseEntity<String> departmentAssigning(
             @PathVariable(name = "uuid") UUID uuid,
             @RequestBody DepartmentAssigningDto departmentAssigningDto) {
