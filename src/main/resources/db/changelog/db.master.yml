@@ -1,6 +1,6 @@
 databaseChangeLog:
   - include:
       file: classpath:db/changelog/db.1.init-table.yml
-#   - include:
-#       file: classpath:db/changelog/db.2.dummy-data.yml
+  - include:
+      file: classpath:db/changelog/db.2.dummy-data.yml
   

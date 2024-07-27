@@ -9,7 +9,7 @@ databaseChangeLog:
             constraints:
               nullable: false
               primaryKey: true
-              primaryKeyName: contactPK
+              primaryKeyName: contactsPK
             name: id
             type: UUID
         - column:
@@ -21,7 +21,7 @@ databaseChangeLog:
         - column:
             name: department_id
             type: UUID
-        tableName: contact
+        tableName: contacts
 - changeSet:
     id: 1722049516930-2
     author: root (generated)
@@ -45,16 +45,16 @@ databaseChangeLog:
     changes:
     - addUniqueConstraint:
         columnNames: id
-        constraintName: UC_CONTACTID_COL
-        tableName: contact
+        constraintName: UC_CONTACTSID_COL
+        tableName: contacts
 - changeSet:
     id: 1722049516930-4
     author: root (generated)
     changes:
     - addUniqueConstraint:
         columnNames: phone_number
-        constraintName: UC_CONTACTPHONE_NUMBER_COL
-        tableName: contact
+        constraintName: UC_CONTACTSPHONE_NUMBER_COL
+        tableName: contacts
 - changeSet:
     id: 1722049516930-5
     author: root (generated)
@@ -77,7 +77,7 @@ databaseChangeLog:
     changes:
     - addForeignKeyConstraint:
         baseColumnNames: department_id
-        baseTableName: contact
+        baseTableName: contacts
         constraintName: FK36lhsxevq4ayaorjgstqjgf3h
         deferrable: false
         initiallyDeferred: false
