@@ -12,15 +12,15 @@ import com.betest.avows.services.ContactService;
 public class KafkaConsumer {
     private static final Logger logger = LoggerFactory.getLogger(KafkaConsumer.class);
 
-    private final ContactService studentService;
+    private final ContactService contactService;
 
-    public KafkaConsumer(ContactService studentService) {
-        this.studentService = studentService;
+    public KafkaConsumer(ContactService contactService) {
+        this.contactService = contactService;
     }
 
-    @KafkaListener(topics = "${spring.kafka.topics.student}", groupId = "${spring.kafka.consumer.group-id}", containerFactory = "studentListenerContainerFactory")
-    public void consumeStudent(ContactDto studentDto) {
-        logger.info("KAFKA CONSUME - (student) " + studentDto);
-        studentService.saveContact(studentDto);
+    @KafkaListener(topics = "${spring.kafka.topics.contact}", groupId = "${spring.kafka.consumer.group-id}", containerFactory = "contactListenerContainerFactory")
+    public void consumeContact(ContactDto contactDto) {
+        logger.info("KAFKA CONSUME - (student) " + contactDto);
+        contactService.saveContact(contactDto);
     }
 }

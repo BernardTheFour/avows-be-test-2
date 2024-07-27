@@ -24,7 +24,7 @@ public class KafkaController {
     @PostMapping("/student")
     public ResponseEntity<String> addStudent(@RequestBody ContactDto studentDto) {
         kafkaProducer.sendMessage(
-                KafkaTopic.TopicEnum.STUDENT,
+                KafkaTopic.TopicEnum.CONTACT,
                 studentDto);
 
         return ResponseEntity.ok("Kafka message produced");

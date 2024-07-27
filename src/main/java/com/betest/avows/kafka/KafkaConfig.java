@@ -51,15 +51,15 @@ public class KafkaConfig {
 
     // consumer configs
     @Bean
-    public ConsumerFactory<String, ContactDto> studentConsumer() {
+    public ConsumerFactory<String, ContactDto> contactConsumer() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
                 new JsonDeserializer<>(ContactDto.class));
     }
 
     @Bean()
-    public ConcurrentKafkaListenerContainerFactory<String, ContactDto> studentListenerContainerFactory() {
+    public ConcurrentKafkaListenerContainerFactory<String, ContactDto> contactListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, ContactDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(studentConsumer());
+        factory.setConsumerFactory(contactConsumer());
         return factory;
     }
 
