@@ -22,7 +22,7 @@ import com.betest.avows.models.Contact;
 import com.betest.avows.services.ContactService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebMvcTest(controllers = StudentController.class)
+@WebMvcTest(controllers = ContactController.class)
 @AutoConfigureMockMvc(addFilters = false)
 public class StudentControllerTest {
 
