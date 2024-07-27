@@ -21,11 +21,11 @@ public class KafkaController {
         this.kafkaProducer = kafkaProducer;
     }
 
-    @PostMapping("/student")
-    public ResponseEntity<String> addStudent(@RequestBody ContactDto studentDto) {
+    @PostMapping("/contact")
+    public ResponseEntity<String> addContact(@RequestBody ContactDto contactDto) {
         kafkaProducer.sendMessage(
                 KafkaTopic.TopicEnum.CONTACT,
-                studentDto);
+                contactDto);
 
         return ResponseEntity.ok("Kafka message produced");
     }
