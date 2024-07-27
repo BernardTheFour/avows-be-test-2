@@ -27,11 +27,11 @@ public class StudentServiceTest {
     @Mock
     private ContactRepository mockStudentRepository;
 
-    private StudentService studentService;
+    private ContactService studentService;
 
     @BeforeEach
     public void setup() {
-        studentService = new StudentService(mockStudentRepository);
+        studentService = new ContactService(mockStudentRepository);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class StudentServiceTest {
 
         // test
         Contact expectedValue = mockEntity;
-        Contact actualValue = studentService.saveStudent(studentDto);
+        Contact actualValue = studentService.saveContact(studentDto);
 
         assertAll(() -> {
             assertEquals(studentDto.name(), mockEntity.getName());
@@ -78,7 +78,7 @@ public class StudentServiceTest {
 
         // test
         assertThrows(DuplicateKeyException.class,
-                () -> studentService.saveStudent(studentDto));
+                () -> studentService.saveContact(studentDto));
     }
 
     @Test

@@ -16,7 +16,7 @@ public class KafkaTopic {
         switch (topicEnum) {
             case STUDENT:
                 return STUDENT_TOPIC;
-            case CLASSROOM:
+            case DEPARTMENT:
                 return CLASSROOM_TOPIC;
             default:
                 return null;
@@ -25,6 +25,6 @@ public class KafkaTopic {
 
     public enum TopicEnum {
         STUDENT,
-        CLASSROOM,
+        DEPARTMENT,
     }
 }

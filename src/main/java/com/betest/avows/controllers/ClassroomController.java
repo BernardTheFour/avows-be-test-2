@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import com.betest.avows.dtos.DepartmentDto;
 import com.betest.avows.dtos.DepartmentAssigningDto;
 import com.betest.avows.models.Department;
-import com.betest.avows.services.ClassroomService;
+import com.betest.avows.services.DepartmentService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +23,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/classroom")
 public class ClassroomController {
 
-    private final ClassroomService classroomService;
+    private final DepartmentService classroomService;
 
-    public ClassroomController(ClassroomService classroomService) {
+    public ClassroomController(DepartmentService classroomService) {
         this.classroomService = classroomService;
     }
 
     @PostMapping("")
     public ResponseEntity<DepartmentDto> saveNewClassroom(@RequestBody DepartmentDto dto) {
-        Department classroomEntity = classroomService.saveClassroom(dto);
+        Department classroomEntity = classroomService.saveDepartment(dto);
         DepartmentDto classroomDto = DepartmentDto.toDto(classroomEntity);
 
         return ResponseEntity.ok(classroomDto);
@@ -39,7 +39,7 @@ public class ClassroomController {
 
     @GetMapping("/id/{uuid}")
     public ResponseEntity<DepartmentDto> getClassroomById(@PathVariable(name = "uuid") UUID uuid) {
-        Department classroomEntity = classroomService.getClassroomById(uuid);
+        Department classroomEntity = classroomService.getDepartmentById(uuid);
         DepartmentDto classroomDto = DepartmentDto.toDto(classroomEntity);
 
         return ResponseEntity.ok(classroomDto);
@@ -59,7 +59,7 @@ public class ClassroomController {
     public ResponseEntity<String> classroomEnrollment(
             @PathVariable(name = "uuid") UUID uuid,
             @RequestBody DepartmentAssigningDto enrollmentDto) {
-        classroomService.classroomEnrollment(uuid, enrollmentDto);
+        classroomService.departmentAssigning(uuid, enrollmentDto);
 
         return ResponseEntity.ok("Class enrollment success");
     }
