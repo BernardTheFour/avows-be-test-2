@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.betest.avows.dtos.StudentDto;
+import com.betest.avows.dtos.ContactDto;
 import com.betest.avows.models.Contact;
 import com.betest.avows.repositories.ContactRepository;
 
@@ -20,8 +20,8 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Contact saveStudent(StudentDto studentDto) {
-        Contact entity = new Contact(studentDto.name(), studentDto.nisn());
+    public Contact saveStudent(ContactDto studentDto) {
+        Contact entity = new Contact(studentDto.name(), studentDto.phone_number());
         return studentRepository.save(entity);
     }
 

@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.betest.avows.dtos.StudentDto;
+import com.betest.avows.dtos.ContactDto;
 import com.betest.avows.models.Department;
 import com.betest.avows.models.Contact;
 import com.betest.avows.services.StudentService;
@@ -50,7 +50,7 @@ public class StudentControllerTest {
                 .getById(inputId);
 
         // test
-        StudentDto resultDto = StudentDto.toDto(student);
+        ContactDto resultDto = ContactDto.toDto(student);
 
         URI uri = new URI("/student/id/" + inputId);
         mockRequest

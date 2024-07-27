@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.betest.avows.dtos.StudentDto;
+import com.betest.avows.dtos.ContactDto;
 import com.betest.avows.kafka.KafkaProducer;
 import com.betest.avows.kafka.KafkaTopic;
 
@@ -22,7 +22,7 @@ public class KafkaController {
     }
 
     @PostMapping("/student")
-    public ResponseEntity<String> addStudent(@RequestBody StudentDto studentDto) {
+    public ResponseEntity<String> addStudent(@RequestBody ContactDto studentDto) {
         kafkaProducer.sendMessage(
                 KafkaTopic.TopicEnum.STUDENT,
                 studentDto);

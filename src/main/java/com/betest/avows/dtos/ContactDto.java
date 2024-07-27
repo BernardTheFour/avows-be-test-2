@@ -10,33 +10,33 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import jakarta.validation.constraints.Pattern;
 
 @JsonInclude(value = Include.NON_NULL)
-public record StudentDto(
+public record ContactDto(
         UUID id,
-        @Pattern(regexp = "\\d+", message = "NISN number only") String nisn,
+        @Pattern(regexp = "\\d+", message = "Phone number, number only") String phone_number,
         String name,
-        ClassroomDto classroom) {
+        DepartmentDto department) {
 
-    public static StudentDto toDtoDetached(Contact entity) {
+    public static ContactDto toDtoDetached(Contact entity) {
         if (Objects.isNull(entity)) {
             return null;
         }
 
-        return new StudentDto(
+        return new ContactDto(
                 entity.getId(),
                 entity.getPhoneNumber(),
                 entity.getName(),
                 null);
     }
 
-    public static StudentDto toDto(Contact entity) {
-        ClassroomDto classroomDto = ClassroomDto
+    public static ContactDto toDto(Contact entity) {
+        DepartmentDto departmentDto = DepartmentDto
                 // when chaining dto, avoid circular json printing
                 .toDtoDetached(entity.getDepartment());
 
-        return new StudentDto(
+        return new ContactDto(
                 entity.getId(),
                 entity.getPhoneNumber(),
                 entity.getName(),
-                classroomDto);
+                departmentDto);
     }
 }
