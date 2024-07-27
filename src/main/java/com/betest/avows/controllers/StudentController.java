@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.betest.avows.dtos.ContactDto;
 import com.betest.avows.models.Contact;
-import com.betest.avows.services.StudentService;
+import com.betest.avows.services.ContactService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/student")
 public class StudentController {
-    private final StudentService studentService;
+    private final ContactService studentService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(ContactService studentService) {
         this.studentService = studentService;
     }
 

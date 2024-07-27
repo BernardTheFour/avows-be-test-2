@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import com.betest.avows.dtos.ContactDto;
 import com.betest.avows.models.Department;
 import com.betest.avows.models.Contact;
-import com.betest.avows.services.StudentService;
+import com.betest.avows.services.ContactService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(controllers = StudentController.class)
@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class StudentControllerTest {
 
     @MockBean
-    private StudentService mockStudentService;
+    private ContactService mockStudentService;
 
     @Autowired
     private MockMvc mockRequest;
