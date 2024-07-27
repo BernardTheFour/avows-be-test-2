@@ -5,9 +5,9 @@ import java.util.UUID;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.betest.avows.models.Department;
+import com.betest.avows.models.Contact;
 
 @Repository
-public interface ClassroomRepository extends ListCrudRepository<Department, UUID> {
-    
+public interface ContactRepository extends ListCrudRepository<Contact, UUID> {
+
 }
